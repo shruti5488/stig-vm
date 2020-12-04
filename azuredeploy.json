@@ -96,38 +96,10 @@
         "description": "Name of the virtual machine."
       }
     },
-    "required-modules-filename": {
-      "type": "string",
-      "defaultValue": "[variables('required-modules-filename')]",
-      "metadata": {
-        "description": "Module Filename"
-      }
-    },
     "artifact-storage-account-uri": {
       "type": "string",
       "metadata": {
         "description": "Module Filename"
-      }
-    },
-    "install-powershell-modules-script-extension-filename": {
-      "type": "string",
-      "defaultValue": "[variables('install-powershell-modules-script-extension-filename')]",
-      "metadata": {
-        "description": "PS Custom Script Filename"
-      }
-    },
-    "win-server-2019-dsc-extension-filename": {
-      "type": "string",
-      "defaultValue": "[variables('win-server-2019-dsc-extension-filename')]",
-      "metadata": {
-        "description": "Extension Filename"
-      }
-    },
-    "dsc-setup-win2019": {
-      "type": "string",
-      "defaultValue": "[variables('dsc-setup-win2019')]",
-      "metadata": {
-        "description": "Extension Filename"
       }
     }
   },
@@ -317,17 +289,17 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "[concat(parameters('artifact-storage-account-uri'), '/', parameters('required-modules-filename'))]",
-                "[concat(parameters('artifact-storage-account-uri'), '/', parameters('install-powershell-modules-script-extension-filename'))]"
+                "[concat(parameters('artifact-storage-account-uri'), '/', variables('required-modules-filename'))]",
+                "[concat(parameters('artifact-storage-account-uri'), '/', variables('install-powershell-modules-script-extension-filename'))]"
               ],
               "timestamp": 123456788,
-              "commandToExecute": "[concat('PowerShell -ExecutionPolicy Unrestricted -File ', parameters('install-powershell-modules-script-extension-filename'))]"
+              "commandToExecute": "[concat('PowerShell -ExecutionPolicy Unrestricted -File ', variables('install-powershell-modules-script-extension-filename'))]"
             }
           }
         },
         {
           "type": "extensions",
-          "name": "[parameters('dsc-setup-win2019')]",
+          "name": "[variables('dsc-setup-win2019')]",
           "apiVersion": "2017-03-30",
           "location": "[resourceGroup().location]",
           "dependsOn": [
@@ -342,7 +314,7 @@
             "settings": {
               "wmfVersion": "latest",
               "configuration": {
-                "url": "[concat(parameters('artifact-storage-account-uri'), '/', parameters('win-server-2019-dsc-extension-filename'))]",
+                "url": "[concat(parameters('artifact-storage-account-uri'), '/', variables('win-server-2019-dsc-extension-filename'))]",
                 "script": "WindowsServer2019Workgroup.ps1",
                 "function": "WindowsServer2019Workgroup"
               }
