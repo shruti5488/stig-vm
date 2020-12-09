@@ -23,7 +23,5 @@ $requiredModules = Get-RequiredModules
 
 # Install the required modules
 foreach($requiredModule in $requiredModules) {
-    echo "Hello"
-    echo "requiredModule : $requiredModule"
     Install-module -Name $requiredModule.ModuleName -RequiredVersion $requiredModule.ModuleVersion -Force
 }
