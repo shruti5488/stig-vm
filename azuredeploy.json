@@ -158,6 +158,19 @@
               "sourceAddressPrefix": "*",
               "destinationAddressPrefix": "*"
             }
+          },
+          {
+            "name": "AllowHTTPInBound",
+            "properties": {
+              "priority": 1010,
+              "access": "Allow",
+              "direction": "Inbound",
+              "destinationPortRange": "80",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*"
+            }
           }
         ]
       }
