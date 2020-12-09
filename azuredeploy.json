@@ -277,7 +277,7 @@
         {
           "type": "Microsoft.Compute/virtualMachines/extensions",
           "name": "install-powershell-modules",
-          "apiVersion": "2018-06-01",
+          "apiVersion": "2020-06-01",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
@@ -300,7 +300,7 @@
         {
           "type": "Microsoft.Compute/virtualMachines/extensions",
           "name": "[variables('dsc-setup-win2019')]",
-          "apiVersion": "2018-06-01",
+          "apiVersion": "2020-06-01",
           "location": "[resourceGroup().location]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]",
