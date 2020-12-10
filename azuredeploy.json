@@ -291,15 +291,17 @@
             "[resourceId('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
           ],
           "properties": {
-            "publisher": "Microsoft.Azure.Extensions",
+            "publisher": "Microsoft.Compute",
             "type": "CustomScriptExtension",
-            "typeHandlerVersion": "1.7",
+            "typeHandlerVersion": "1.4",
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "[concat(variables('artifact-storage-account-uri'), '/', variables('install-powershell-modules-script-extension-filename'))]"
-              ],
-              "commandToExecute": "[concat('PowerShell -ExecutionPolicy Unrestricted -File ', variables('install-powershell-modules-script-extension-filename'))]"
+                "https://raw.githubusercontent.com/shruti5488/stig-vm/main/scripts/DownloadPowerShellModules.ps1"
+              ]
+            },
+            "protectedSettings" : {
+              "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File ', variables('install-powershell-modules-script-extension-filename'), ' -user ', parameters('adminUsername'),' -password ',parameters('adminPassword'))]"
             }
           }
         }
