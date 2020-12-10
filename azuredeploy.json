@@ -298,10 +298,9 @@
             "settings": {
               "fileUris": [
                 "https://raw.githubusercontent.com/shruti5488/stig-vm/main/scripts/DownloadPowerShellModules.ps1"
-              ]
-            },
-            "protectedSettings" : {
-              "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File ', variables('install-powershell-modules-script-extension-filename'), ' -user ', parameters('adminUsername'),' -password ',parameters('adminPassword'))]"
+              ],
+              "commandToExecute": "[concat('Powershell -ExecutionPolicy Unrestricted -File ', variables('install-powershell-modules-script-extension-filename'))]"
+
             }
           }
         }
